@@ -6,6 +6,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Weather App',
       theme: new ThemeData(
         primarySwatch: Colors.blue,
@@ -37,10 +38,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Weather App'),
+        backgroundColor: Colors.blueAccent,
+        title: Row(
+          children: [Text("Weather App"), Spacer(), Icon(Icons.cloud)],
+        ),
       ),
       body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -48,15 +51,15 @@ class _HomePageState extends State<HomePage> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              title: Text("Home"),
+              label: "Home",
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
               icon: Icon(Icons.add_location),
-              title: Text("Add Locations"),
+              label: "Add Locations",
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings),
-              title: Text("Settings"),
+              label: "Settings",
               backgroundColor: Colors.blue),
         ],
         onTap: (index) {
