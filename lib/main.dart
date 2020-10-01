@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'Pages/homeview.dart';
+import 'Pages/location.dart';
+import 'Pages/settings.dart';
+import 'Services/drawer.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,25 +28,23 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
-  final tabs = [
-    Center(
-      child: Text("Home Page"),
-    ),
-    Center(
-      child: Text("Locations Page"),
-    ),
-    Center(
-      child: Text("Settings Page"),
-    ),
-  ];
+  final tabs = [HomeView(), LocationView(), SettingView()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerInterface(),
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
         title: Row(
-          children: [Text("Weather App"), Spacer(), Icon(Icons.cloud)],
+          children: [
+            Text(
+              "Weather App",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Spacer(),
+            Icon(Icons.cloud)
+          ],
         ),
       ),
       body: tabs[_currentIndex],
