@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'Pages/homeview.dart';
+import 'Pages/location.dart';
+import 'Pages/settings.dart';
+import 'Services/drawer.dart';
 
 void main() => runApp(MyApp());
 
@@ -6,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Weather App',
       theme: new ThemeData(
         primarySwatch: Colors.blue,
@@ -23,24 +28,24 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
-  final tabs = [
-    Center(
-      child: Text("Home Page"),
-    ),
-    Center(
-      child: Text("Locations Page"),
-    ),
-    Center(
-      child: Text("Settings Page"),
-    ),
-  ];
+  final tabs = [HomeView(), LocationView(), SettingView()];
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
+      drawer: DrawerInterface(),
       appBar: AppBar(
-        title: Text('Weather App'),
+        backgroundColor: Colors.blueAccent,
+        title: Row(
+          children: [
+            Text(
+              "Weather App",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Spacer(),
+            Icon(Icons.cloud)
+          ],
+        ),
       ),
       body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -48,15 +53,15 @@ class _HomePageState extends State<HomePage> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              title: Text("Home"),
+              label: "Home",
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
               icon: Icon(Icons.add_location),
-              title: Text("Add Locations"),
+              label: "Add Locations",
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings),
-              title: Text("Settings"),
+              label: "Settings",
               backgroundColor: Colors.blue),
         ],
         onTap: (index) {
