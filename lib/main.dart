@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'search_bar.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,9 +28,7 @@ class _HomePageState extends State<HomePage> {
     Center(
       child: Text("Home Page"),
     ),
-    Center(
-      child: Text("Locations Page"),
-    ),
+    SearchBar(),
     Center(
       child: Text("Settings Page"),
     ),
